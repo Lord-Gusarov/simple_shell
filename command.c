@@ -33,15 +33,15 @@ int getcommand(char ***buffer)
 	freeStrArr(*buffer);
 
 	chars_rd = getline(&line, &bufsize, stdin);
-	line2 = eatSpaces(line);
-	sfree(&line);
 	if (chars_rd == EOF)
 	{
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "\n", 1);
-		sfree(&line2);
+		sfree(&line);
 		exit(0);
 	}
+	line2 = eatSpaces(line);
+	sfree(&line);
 	chars_rd = _strlen(line2);
 	*buffer = _strtok(line2, " \t\n");
 	sfree(&line2);
