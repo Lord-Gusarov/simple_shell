@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * eatSapces - finds and deletes spaces or tabs in a string
+ * eatSapces - finds and deletes spaces or tabs in the beggining of a string
  * @line: string to be analyzed for spaces
  * Return: new allocated memory with string and no spaces
  */

@@ -42,4 +42,6 @@ void freeStrArr(char **array);
 /*safely frees a string, checking for null... then sets it to null*/
 void sfree(char **);
 
+/*================ eatSpaces.c ======================*/
+char *eatSpaces(char *line);
 #endif

@@ -28,21 +28,23 @@ int getcommand(char ***buffer)
 {
 	size_t bufsize;
 	int chars_rd = 0;
-	char *line = NULL;
+	char *line = NULL, *line2 = NULL;
 
 	freeStrArr(*buffer);
 
 	chars_rd = getline(&line, &bufsize, stdin);
+	line2 = eatSpaces(line);
+	sfree(&line);
 	if (chars_rd == EOF)
 	{
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "\n", 1);
-		sfree(&line);
+		sfree(&line2);
 		exit(0);
 	}
-
-	*buffer = _strtok(line, " \t\n");
-	sfree(&line);
+	chars_rd = _strlen(line2);
+	*buffer = _strtok(line2, " \t\n");
+	sfree(&line2);
 	return (chars_rd);
 }
 /**
