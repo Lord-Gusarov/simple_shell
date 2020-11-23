@@ -74,10 +74,10 @@ int _atoi(char *s)
 			n = n * 10 + (ch - 48) * sign;
 		}
 	}
-	
+
 	if (n > INT_MAX)
-		return(-1);
-	
+		return (-1);
+
 	return (n);
 }
 
