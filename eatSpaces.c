@@ -25,7 +25,7 @@ char *eatSpaces(char *line)
 		count++;
 		idx++;
 	}
-	*(strHolder + idx) ='\0';
+	*(strHolder + idx) = '\0';
 
 	return (strHolder);
 }
