@@ -67,6 +67,10 @@ int _exit_(char *p_name, char **input, unsigned int p_cnt)
 			code = _atoi(input[1]);
 		}
 	}
+	else if (p_cnt > 1)
+	{
+		code = 2;
+	}
 	freeStrArr(input);
 	exit(code);
 }
