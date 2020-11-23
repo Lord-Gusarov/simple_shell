@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <limits.h>
 
 /*==================== _string1.c =================*/
 /*Lenght of a string*/
