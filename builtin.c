@@ -53,7 +53,7 @@ int _exit_(char *p_name, char **input, unsigned int p_cnt)
 
 	if (input[1] != NULL)
 	{
-		if (!onlyDigits(input[1]))
+		if (!onlyDigits(input[1]) || (_atoi(input[1]) == -1))
 		{
 			sN = intToStr(p_cnt);
 			error = concatenator(6, p_name, ": ", sN, message, input[1], "\n");

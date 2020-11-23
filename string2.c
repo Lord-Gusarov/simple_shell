@@ -55,7 +55,7 @@ int _strcmp(char *s1, char *s2)
  */
 int _atoi(char *s)
 {
-	int n = 0, sign = 1;
+	long int n = 0, sign = 1;
 	int i, ch;
 
 	/* strtd indicates if a conversion to integer has started*/
@@ -74,8 +74,10 @@ int _atoi(char *s)
 			n = n * 10 + (ch - 48) * sign;
 		}
 	}
-
-
+	
+	if (n > INT_MAX)
+		return(-1);
+	
 	return (n);
 }
 
