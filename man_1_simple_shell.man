@@ -1,0 +1,71 @@
+.TH SIMPLE_SHELL 1 2020-NOV-18 GNU
+
+.SH NAME
+simple_shell \- shell termianl in C language
+
+.SH SYNOPSIS
+.B ./hsh
+.TP
+[\fBecho\fR \fIcommand\fR] | ./hsh
+
+.SH DESCRIPTION
+.B simple_shell
+.TP
+This program runs a shell interface using C programming, it will handle regular
+commands with full path, shorten commands such as ls, cd, pwd, whoami, and
+others. As well manage flags added to the different commands.
+
+
+.SH COMMANDS
+.TP
+All commands passed by the user will be executed as a regular shell would. 
+As well execute piped commands before runtime.
+
+.SH OPTIONS
+.TP
+\fBecho\fR \fIcommand\fR \fB | \fR ./hsh
+This allows a command to be piped directly into the program before run time.
+.TP
+.B ./hsh
+.TP
+Runs the program normaly allowing the user to enter the desired command during the programs run time.
+.TP
+.SH
+BUILT-IN COMMANDS
+.TP
+.IP \fBexit\fR
+Allows the user to exit our shell interface
+.TP
+.IP \fBls\fR
+Shows in the standar output the list of file and/or directories.
+.TP
+		See \fBman\fR \fIls\fR for more options.
+.TP
+.IP \fBcd\fR
+Changes from the current directory to the desired directory.
+.TP
+		See \fBman\fR \fIcd\fR for more options.
+.TP
+.IP \fBalias\fR
+Allows the user to give a desired name to a command or sequence of commands.
+.TP
+		See \fBman\fR \fIalias\fR for more options.
+.TP
+.IP \fBhelp\fR
+Displays information about a specific built-in command
+.TP
+		See \fBman\fR \fIhelp\fR for more options.
+.TP
+
+.SH SPECIAL CASE
+.TP
+special handler Ctrl+C
+.TP
+The special handler Ctrl+C will not exit our shell, however it will print ^C.
+.TP 
+.SH AUTHORS
+.TP
+Gustavo Hornedo & Angel Gonzalez
+.TP
+Holberton School Cohort-13.
+
