@@ -26,7 +26,7 @@ void *_realloc(void *ptr, size_t size);
 /*Obtain our command*/
 int getcommand(char ***);
 /*append frst succesful path to input command*/
-void appendCommandPath(char **input);
+int appendCommandPath(char **input);
 int locateEmptyDir(char *str);
 /*determines if the first token read from user input is a 'builin' command*/
 int builtin(char *);

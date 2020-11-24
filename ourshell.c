@@ -11,6 +11,7 @@ int main(__attribute__((unused)) int ac, char **av)
 	pid_t my_pid;
 	unsigned int p_cnt = 0;
 	char **input = NULL;
+	int valid_path = 0;
 
 	signal(SIGINT, catch_c_c);
 
@@ -22,11 +23,11 @@ int main(__attribute__((unused)) int ac, char **av)
 		{
 			if (!builtin(*input))
 			{
-				appendCommandPath(input);
+				valid_path = appendCommandPath(input);
 				my_pid = fork();
 				if (my_pid == 0)
 				{
-					if (execve(input[0], input, NULL) == -1)
+					if (!valid_path || (execve(input[0], input, NULL) == -1))
 					{
 						commandNotFound(av[0], p_cnt, *input);
 						freeStrArr(input);

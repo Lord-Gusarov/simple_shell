@@ -3,17 +3,21 @@
 /**
  * appendCommandPath - appends the first subpath where the command was found
  * @input: arguments read from stdin
+ * Return: 1 if command path is found to be valid, otherwise 0
  */
-void appendCommandPath(char **input)
+int appendCommandPath(char **input)
 {
 	struct stat st;
 	char *check = NULL, *path = NULL, **tokens = NULL;
-	int i = 0, idx_cwd = 0;
+	int i = 0, idx_cwd = 0, valid = 0;
+
+	if (input[0][0] == '.' || input[0][0] == '/')
+		if (stat(*input, &st) == 0)
+			return (1);
 
 	path = _getenv("PATH");
 	tokens = _strtok(path, ":");
 	idx_cwd = locateEmptyDir(path);
-
 	if (!(tokens == NULL || path == NULL))
 	{
 		for (i = 0; tokens[i] != NULL; i++)
@@ -21,13 +25,17 @@ void appendCommandPath(char **input)
 			if (idx_cwd == i)
 			{
 				if (stat(*input, &st) == 0)
+				{
+					valid = 1;
 					break;
+				}
 			}
 			check = concatenator(3, tokens[i], "/", *input);
 			if (stat(check, &st) == 0)
 			{
 				sfree(&input[0]);
 				input[0] = _strdup(check);
+				valid = 1;
 				break;
 			}
 			sfree(&check);
@@ -36,6 +44,7 @@ void appendCommandPath(char **input)
 	sfree(&check);
 	sfree(&path);
 	freeStrArr(tokens);
+	return (valid);
 }
 
 /**
