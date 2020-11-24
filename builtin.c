@@ -69,7 +69,7 @@ int _exit_(char *p_name, char **input, unsigned int p_cnt)
 	}
 	else if (p_cnt > 1)
 	{
-		code = 2;
+		code = exit_code;
 	}
 	freeStrArr(input);
 	exit(code);

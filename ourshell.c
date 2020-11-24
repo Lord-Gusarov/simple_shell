@@ -11,10 +11,9 @@ int main(__attribute__((unused)) int ac, char **av)
 	pid_t my_pid;
 	unsigned int p_cnt = 0;
 	char **input = NULL;
-	int valid_path = 0;
+	int valid_path = 0, status;
 
 	signal(SIGINT, catch_c_c);
-
 	do {
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "$ ", 2);
@@ -31,11 +30,15 @@ int main(__attribute__((unused)) int ac, char **av)
 					{
 						commandNotFound(av[0], p_cnt, *input);
 						freeStrArr(input);
-						exit(-1);
+						exit(127);
 					}
 				}
 				else
-					wait(NULL);
+				{
+					wait(&status);
+					if (WIFEXITED(status))
+						exit_code = WEXITSTATUS(status);
+				}
 			}
 			else
 				execBuiltIn(av[0], input, p_cnt);
@@ -43,6 +46,5 @@ int main(__attribute__((unused)) int ac, char **av)
 		freeStrArr(input);
 		input = NULL;
 	} while (1);
-
 	exit(-1);
 }

@@ -14,6 +14,7 @@
 
 /*External Enviroment variable*/
 extern char **environ;
+int __attribute((unused)) exit_code;
 /*======================*/
 
 
