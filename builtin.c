@@ -60,6 +60,7 @@ int _exit_(char *p_name, char **input, unsigned int p_cnt)
 			write(STDERR_FILENO, error, _strlen(error));
 			sfree(&sN);
 			sfree(&error);
+			exit_code = 2;
 			return (0);
 		}
 		else
