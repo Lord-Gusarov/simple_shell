@@ -38,7 +38,7 @@ int getcommand(char ***buffer)
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "\n", 1);
 		sfree(&line);
-		exit(0);
+		exit(exit_code);
 	}
 	line2 = eatSpaces(line);
 	sfree(&line);

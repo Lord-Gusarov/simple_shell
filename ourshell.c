@@ -46,5 +46,5 @@ int main(__attribute__((unused)) int ac, char **av)
 		freeStrArr(input);
 		input = NULL;
 	} while (1);
-	exit(-1);
+	exit(exit_code);
 }
