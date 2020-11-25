@@ -8,10 +8,9 @@
  */
 int main(__attribute__((unused)) int ac, char **av)
 {
-	pid_t my_pid;
 	unsigned int p_cnt = 0;
 	char **input = NULL;
-	int valid_path = 0, status;
+	int status;
 
 	signal(SIGINT, catch_c_c);
 	do {
@@ -20,28 +19,27 @@ int main(__attribute__((unused)) int ac, char **av)
 		p_cnt++;
 		if (getcommand(&input) > 1)
 		{
-			if (!builtin(*input))
+			if (builtin(*input))
+				execBuiltIn(av[0], input, p_cnt);
+			else
 			{
-				valid_path = appendCommandPath(input);
-				my_pid = fork();
-				if (my_pid == 0)
+				if (appendCommandPath(input) == 1)
 				{
-					if (!valid_path || (execve(input[0], input, NULL) == -1))
+					if (fork() == 0)
 					{
-						commandNotFound(av[0], p_cnt, *input);
+						execve(input[0], input, NULL);
 						freeStrArr(input);
 						exit(127);
 					}
+					else
+					{
+						wait(&status);
+						exit_code = WEXITSTATUS(status);
+					}
 				}
 				else
-				{
-					wait(&status);
-					if (WIFEXITED(status))
-						exit_code = WEXITSTATUS(status);
-				}
+					commandNotFound(av[0], p_cnt, *input);
 			}
-			else
-				execBuiltIn(av[0], input, p_cnt);
 		}
 		freeStrArr(input);
 		input = NULL;

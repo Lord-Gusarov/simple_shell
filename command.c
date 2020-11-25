@@ -17,6 +17,7 @@ void commandNotFound(char *str1, unsigned int cnt, char *str2)
 	fflush(stdout);
 	sfree(&error);
 	sfree(&scnt);
+	exit_code = 127;
 }
 
 /**

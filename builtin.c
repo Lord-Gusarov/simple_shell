@@ -32,6 +32,7 @@ void env(void)
 		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
 		write(STDOUT_FILENO, "\n", 1);
 	}
+	exit_code = 0;
 }
 
 /**
