@@ -76,7 +76,9 @@ int locateEmptyDir(char *str)
 		}
 		i++;
 	}
-	if (str[i - 1] == ':')
-		return (l);
+	if (i > 0)
+		if (str[i - 1] == ':')
+			return (l);
+
 	return (-1);
 }

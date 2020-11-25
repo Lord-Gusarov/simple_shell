@@ -14,7 +14,6 @@ void commandNotFound(char *str1, unsigned int cnt, char *str2)
 	char *error = concatenator(7, str1, s, scnt, s, str2, s, "not found\n");
 
 	write(STDERR_FILENO, error, _strlen(error));
-	fflush(stdout);
 	sfree(&error);
 	sfree(&scnt);
 	exit_code = 127;
