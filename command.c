@@ -26,13 +26,12 @@ void commandNotFound(char *str1, unsigned int cnt, char *str2)
  */
 int getcommand(char ***buffer)
 {
-	size_t bufsize;
 	int chars_rd = 0;
 	char *line = NULL, *line2 = NULL;
 
 	freeStrArr(*buffer);
 
-	chars_rd = getline(&line, &bufsize, stdin);
+	chars_rd = _getline(&line, BUFSIZ, STDIN_FILENO);
 	if (chars_rd == EOF)
 	{
 		if (isatty(STDIN_FILENO) == 1)
@@ -43,7 +42,7 @@ int getcommand(char ***buffer)
 	line2 = eatSpaces(line);
 	sfree(&line);
 	chars_rd = _strlen(line2);
-	*buffer = _strtok(line2, " \t\n");
+	*buffer = _strtok(line2, " \t\n;");
 	sfree(&line2);
 	return (chars_rd);
 }

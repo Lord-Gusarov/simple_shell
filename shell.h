@@ -18,9 +18,6 @@ int __attribute((unused)) exit_code;
 /*======================*/
 
 
-/*Our getline*/
-size_t _getline(char **lineptr, size_t *n, FILE *stream);
-
 /*Our realloc*/
 void *_realloc(void *ptr, size_t size);
 
@@ -48,5 +45,11 @@ void catch_c_d(int sig);
 int execBuiltIn(char*, char **, unsigned int);
 void env(void);
 int _exit_(char *, char **, unsigned int);
+
+/*======= getline.c =======*/
+ssize_t _getline(char **lineptr, size_t n, int fd);
+ssize_t _igetline(char **lineptr, size_t n, int fd);
+ssize_t _ngetline(char **lineptr, size_t n, int fd);
+/*=========================*/
 
 #endif
